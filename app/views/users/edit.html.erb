@@ -1,47 +1,38 @@
+<div class="container pt-5">
+  <div class="card" id="card-edit">
+    <div class="card-header" id="card-header-edit">
+      <strong>Update User Information </strong>
+    </div>
+    <div class="card-body">
 
-<% if @user.errors.any? %>
-<div id="error_explanation">
-  <h2>
-    <%= pluralize(@user.errors.count, "error") %> prohibited
-    this User from being saved:
-  </h2>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+      <div class="row">
+        
+       <%= render 'form' %>
+
+        <% if @user.errors.any? %>
+
+        
+
+          <div class="col-6">
+            <div class="alert alert-danger" role="alert">
+              Please check below <%= pluralize(@user.errors.count, "error") %> has been occured :
+              <hr class="my-4">
+              <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+            
+
+          </div>
+        <% end %>
+
+
+      </div>
+      
+    </div>
+  </div>
 </div>
-<% end %>
 
 
-<%= form_with(model: @user, local: true) do |form| %>
-    <p>
-        <%= form.label :first_name %><br>
-        <%= form.text_field :first_name %>
-    </p>
-   
-    <p>
-        <%= form.label :last_name %><br>
-        <%= form.text_field :last_name %>
-    </p>
-
-    <p>
-        <%= form.label :email %><br>
-        <%= form.email_field :email %>
-    </p>
-
-    <p>
-        <%= form.label :user %><br>
-        <%= form.text_field :user %>
-    </p>
-    
-   
-    <p>
-      <%= form.submit %>
-    </p>
-<% end %>
-
-<p>
-<%= link_to 'List of Users', users_path %> |
-<%= link_to 'Go Back', user_path(@user) %>
-</p>

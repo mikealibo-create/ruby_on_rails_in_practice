@@ -1,29 +1,21 @@
-<p>
-<strong>First Name:</strong>
-<%= @user.first_name %>
-</p>
+<div class="container pt-5">
+  <div class="card" id="card-edit">
+    <div class="card-header" id="card-header-edit">
+      <strong>User Information </strong>
+    </div>
+    <div class="card-body">
+      <p><strong>Full Name : </strong> <%= @user.first_name %> <%= @user.last_name %> </p>
+      <p><strong>Email Address : </strong> <%= @user.email %></p>
+      <p><strong>Username : </strong> <%= @user.user %></p>
 
-<p>
-<strong>Last Name:</strong>
-<%= @user.last_name %>
-</p>
+      <%= link_to 'Back', users_path, ({:class => "btn btn-secondary"}) %>
+      <%= link_to 'Update', edit_user_path(@user), ({:class => "btn btn-warning"}) %>
+      <%= link_to 'Delete', user_path(@user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              :class => "btn btn-danger"%>
+    </div>
+  </div>
+</div>
 
 
-<p>
-<strong>Email Address:</strong>
-<%= @user.email %>
-</p>
-
-
-<p>
-<strong>Username:</strong>
-<%= @user.user %>
-</p>
-
-<p>
-<%= link_to 'List of Users', users_path %> |
-<%= link_to 'Edit', edit_user_path(@user) %> | 
-<%= link_to 'Delete', user_path(@user),
-      method: :delete,
-      data: { confirm: 'Are you sure?' } %>
-</p>

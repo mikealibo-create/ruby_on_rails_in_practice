@@ -1,4 +1,57 @@
-<h1>Users Information</h1>
+
+<div class="container mt-5 mb-5">
+
+  <% flash.each do |name, msg| %>
+      <div class="alert alert-success" role="alert">
+        <strong>Congratulations ! </strong><%= msg %>
+      </div>
+  <% end%>
+
+  <div class="card" id="card-edit">
+    <div class="card-header" id="card-header-edit">
+      <div class="row">
+        <div class="col-sm-12 col-md-10 col-lg-10">
+          <strong>Users Information</strong>
+        </div>
+        <div class="col-sm-12 col-md-2 col-lg-2 text-right">
+          <%= link_to 'Create New User', new_user_path, ({:class => "btn btn-success btn-sm"}) %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+            <th colspan="3" class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+
+            <tr>
+              <td><%= user.first_name %> <%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.user %></td>
+              <td><%= link_to 'Show', user_path(user) , ({:class => "btn btn-info btn-sm btn-block"})%></td>
+              <td><%= link_to 'Edit', edit_user_path(user),({:class => "btn btn-warning btn-sm btn-block"}) %></td>
+              <td><%= link_to 'Delete', user_path(user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              :class => "btn btn-danger btn-sm btn-block"%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- <h5 class="display-4">Users Information</h5>
 
 <table>
   <tr>
